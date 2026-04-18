@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You 🤍</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+    .hidden { display: none; }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #f472b6;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    input {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 10px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <h2>Enter to continue 🤍</h2>
+  <input id="user" placeholder="Username"><br>
+  <input id="pass" type="password" placeholder="Password"><br>
+  <button onclick="login()">Login</button>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" class="hidden">
+  <h2>مين اكتر حد بحبه؟ 😏</h2>
+  <button onclick="goNext()">انتي</button>
+  <button onclick="goNext()">برضو انتي</button>
+  <button onclick="goNext()">اكيد انتي</button>
+</div>
+
+<!-- FINAL PAGE -->
+<div id="final" class="hidden">
+  <h1>1 Week with You 🤍</h1>
+  <p id="counter"></p>
+  <button onclick="showMessage()">Click me</button>
+  <p id="msg" class="hidden">I’d choose you again… every single time 🤍</p>
+  <img src="d:\downloads\WhatsApp Image 2026-04-18 at 2.03.52 AM.jpeg" style="width: 200px; height: 200px; object-fit: cover; border-radius: 20px;">
+</div>
+
+<script>
+  function login() {
+    const user = document.getElementById('user').value;
+    const pass = document.getElementById('pass').value;
+
+    if(user === 'toti' && pass === '272010') {
+      document.getElementById('login').classList.add('hidden');
+      document.getElementById('quiz').classList.remove('hidden');
+    } else {
+      alert('غلط يا حبيبتي جربي اسم دلعك و باسورد موبايلي😅');
+    }
+  }
+
+  function goNext() {
+    document.getElementById('quiz').classList.add('hidden');
+    document.getElementById('final').classList.remove('hidden');
+    startCounter();
+  }
+
+  function showMessage() {
+    document.getElementById('msg').classList.remove('hidden');
+  }
+
+  function startCounter() {
+    const startDate = new Date('2026-04-11T02:13:00');
+
+    setInterval(() => {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('counter').innerText =
+        days + ' days ' + hours + ' hours ' + minutes + ' minutes ' + seconds + ' seconds';
+    }, 1000);
+  }
+</script>
+
+</body>
+</html>
